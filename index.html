@@ -4,35 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moka Desarrollos — Sitios web rápidos y menús QR para cafeterías</title>
-<meta name="description" content="Moka Desarrollos, taller de desarrollo web: sitios y menús digitales por QR para cafeterías y comercios, y desarrollo a medida con Python y FastAPI. Cada entrega se prueba en móvil y escritorio antes de publicarse.">
+<meta name="description" content="Moka Desarrollos, taller de desarrollo web para gastronomía: sitios y menús digitales por QR que abren en menos de un segundo. Cada menú se prueba en más de 15 modelos de celular antes de publicarse.">
 <meta name="author" content="Moka Desarrollos">
 <meta property="og:title" content="Moka Desarrollos — Sitios web rápidos y menús QR para cafeterías">
-<meta property="og:description" content="Sitios web rápidos y probados para cafeterías y comercios, menús digitales por QR y desarrollo a medida con Python y FastAPI.">
+<meta property="og:description" content="Menús digitales por QR y sitios web para cafeterías y comercios de gastronomía. Carga instantánea, listos para Google Maps y WhatsApp.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        paper: '#fbfaf7',
-        espresso: '#191614',
-        ink: '#191614',
-        'ink-soft': '#5b5148',
-        'ink-inv': '#f4ede4',
-        'ink-inv-soft': '#b8ab99',
-        line: '#e7e0d3',
-        'line-dark': '#2d2724',
-        forest: { DEFAULT: '#1e3a2f', hover: '#16302a' },
-        amber: '#b45309',
-      },
-      fontFamily: {
-        display: ['"Space Grotesk"', 'Georgia', 'sans-serif'],
-        sans: ['Archivo', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        paper: '#fcfbf9',
+        ink: '#1f1a17',
+        'ink-soft': '#6b6055',
+        'ink-inv': '#f3ede4',
+        'ink-inv-soft': '#b3a693',
+        line: '#e9e2d5',
+        'line-strong': '#d8cfbe',
+        'line-dark': '#38302b',
+        espresso: { DEFAULT: '#2c2420', hover: '#211b17' },
+        moss: { DEFAULT: '#273b31', hover: '#1e2f27' },
+        clay: '#a8542f',
       },
     },
   },
@@ -41,73 +34,75 @@ tailwind.config = {
 <style>
   :root {
     color-scheme: light;
-    --paper: #fbfaf7;
-    --espresso: #191614;
-    --ink: #191614;
-    --ink-soft: #5b5148;
-    --ink-inv: #f4ede4;
-    --ink-inv-soft: #b8ab99;
-    --line: #e7e0d3;
-    --line-dark: #2d2724;
-    --forest: #1e3a2f;
-    --forest-hover: #16302a;
-    --amber: #b45309;
+    --paper: #fcfbf9;
+    --ink: #1f1a17;
+    --ink-soft: #6b6055;
+    --ink-inv: #f3ede4;
+    --ink-inv-soft: #b3a693;
+    --line: #e9e2d5;
+    --line-strong: #d8cfbe;
+    --line-dark: #38302b;
+    --espresso: #2c2420;
+    --espresso-hover: #211b17;
+    --moss: #273b31;
+    --clay: #a8542f;
+    --shadow-warm: 0 8px 30px -4px rgba(44, 36, 32, 0.08);
   }
   body { background: var(--paper); color: var(--ink); }
   section[id] { scroll-margin-top: 4.5rem; }
 
   .label {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     font-size: 0.72rem;
+    font-weight: 500;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: var(--amber);
+    color: var(--clay);
   }
-  .on-dark .label { color: #d9a441; }
+  .on-dark .label { color: #d79a68; }
 
-  /* Táctilidad: sombra sólida desplazada */
-  .tactile { border: 1px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
-  .tactile-lg { border: 1px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); }
-  .tactile-inv { border: 1px solid var(--line-dark); box-shadow: 4px 4px 0 var(--line-dark); }
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 0.875rem;
+    box-shadow: var(--shadow-warm);
+  }
+  .card-dark {
+    background: #241e1a;
+    border: 1px solid var(--line-dark);
+    border-radius: 0.875rem;
+  }
 
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.8rem 1.25rem;
+    padding: 0.8rem 1.3rem;
     font-weight: 600;
     font-size: 0.95rem;
     line-height: 1;
-    border: 1px solid var(--ink);
-    box-shadow: 3px 3px 0 var(--ink);
-    transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+    transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
   }
-  .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
-  .btn-primary { background: var(--forest); color: var(--ink-inv); }
-  .btn-primary:hover { background: var(--forest-hover); }
-  .btn-ghost { background: var(--paper); color: var(--ink); }
-  .btn-ghost:hover { background: #f1ebdf; }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--espresso); color: var(--ink-inv); box-shadow: 0 10px 24px -8px rgba(44, 36, 32, 0.35); }
+  .btn-primary:hover { background: var(--espresso-hover); }
+  .btn-ghost { background: var(--paper); color: var(--ink); border-color: var(--line-strong); }
+  .btn-ghost:hover { background: #f4efe6; }
 
   .link-accent {
-    color: var(--forest);
+    color: var(--moss);
     font-weight: 600;
     text-decoration: none;
-    box-shadow: inset 0 -1px 0 rgba(30, 58, 47, 0.4);
+    box-shadow: inset 0 -1px 0 rgba(39, 59, 49, 0.35);
     transition: box-shadow 150ms ease;
   }
-  .link-accent:hover { box-shadow: inset 0 -2px 0 var(--forest); }
-  .link-inv {
-    color: var(--ink-inv);
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: inset 0 -1px 0 rgba(244, 237, 228, 0.4);
-    transition: box-shadow 150ms ease;
-  }
-  .link-inv:hover { box-shadow: inset 0 -2px 0 var(--ink-inv); }
+  .link-accent:hover { box-shadow: inset 0 -2px 0 var(--moss); }
 
   a:focus-visible, .btn:focus-visible {
-    outline: 2px solid var(--forest);
+    outline: 2px solid var(--moss);
     outline-offset: 2px;
   }
   .on-dark a:focus-visible { outline-color: var(--ink-inv); }
@@ -115,37 +110,36 @@ tailwind.config = {
   .nav-link { color: var(--ink-soft); transition: color 120ms ease; }
   .nav-link:hover { color: var(--ink); }
 
-  /* Mockup de navegador para las demos */
   .browserbar {
     display: flex;
     align-items: center;
     gap: 0.45rem;
     padding: 0.55rem 0.75rem;
-    background: #f1ebdf;
-    border-bottom: 1px solid var(--ink);
+    background: #f4efe6;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0.875rem 0.875rem 0 0;
   }
-  .browserbar .dot { width: 0.6rem; height: 0.6rem; border: 1px solid var(--ink); border-radius: 9999px; }
+  .browserbar .dot { width: 0.55rem; height: 0.55rem; border-radius: 9999px; background: var(--line-strong); }
   .browserbar .url {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.7rem;
-    color: #6b5f4f;
+    color: #8a7d6b;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .leader { flex: 1; border-bottom: 1px dotted #c9bfa9; transform: translateY(-0.2rem); }
+  .leader { flex: 1; border-bottom: 1px dotted #cbc0a9; transform: translateY(-0.2rem); }
 
-  /* Widget comparativo */
-  .cmp-track { height: 0.85rem; border: 1px solid var(--ink); background: var(--paper); overflow: hidden; }
+  .cmp-track { height: 0.85rem; border-radius: 9999px; background: #efe8db; overflow: hidden; }
   .cmp-fill {
     height: 100%;
+    border-radius: 9999px;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .is-visible .cmp-fill { transform: scaleX(1); }
 
-  /* Scroll reveal estilo Apple: solo opacity + transform */
   .reveal {
     opacity: 0;
     transform: translateY(1.25rem);
@@ -161,7 +155,7 @@ tailwind.config = {
     position: fixed;
     inset: 0 0 auto 0;
     height: 2px;
-    background: #1e3a2f;
+    background: var(--moss);
     transform: scaleX(0);
     transform-origin: left;
     z-index: 50;
@@ -170,7 +164,7 @@ tailwind.config = {
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .btn, .link-accent, .link-inv, .nav-link { transition: none; }
+    .btn, .link-accent, .nav-link { transition: none; }
     .btn:active { transform: none; }
     .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
     .cmp-fill, .is-visible .cmp-fill { transform: scaleX(1); transition: none; }
@@ -178,20 +172,20 @@ tailwind.config = {
   }
 </style>
 </head>
-<body class="font-sans antialiased selection:bg-amber/20">
+<body class="font-sans antialiased selection:bg-clay/20">
 
 <div id="progress-bar" aria-hidden="true"></div>
 
-<header class="sticky top-0 z-40 border-b border-ink bg-paper">
+<header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
   <nav class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3">
     <a href="#inicio" class="leading-tight">
-      <span class="block font-display text-base font-semibold tracking-[-0.02em] text-ink">Moka Desarrollos</span>
-      <span class="label">Taller de desarrollo web &amp; gastronomía</span>
+      <span class="block text-base font-semibold tracking-[-0.02em] text-ink">Moka Desarrollos</span>
+      <span class="label">Taller de desarrollo web para gastronomía</span>
     </a>
     <div class="hidden items-center gap-7 text-sm md:flex">
       <a href="#servicios" class="nav-link">Servicios</a>
       <a href="#demos" class="nav-link">Demos</a>
-      <a href="#ingenieria" class="nav-link">Ingeniería</a>
+      <a href="#calidad" class="nav-link">Calidad</a>
       <a href="#contacto" class="nav-link">Contacto</a>
     </div>
     <a href="https://wa.me/56900000000?text=Hola%20Moka%2C%20quiero%20cotizar%20un%20sitio%20web" target="_blank" rel="noopener" class="btn btn-primary hidden sm:inline-flex">
@@ -201,91 +195,172 @@ tailwind.config = {
 </header>
 
 <main>
-<section id="inicio" class="border-b border-ink px-5 py-16 md:py-24">
-  <div class="mx-auto max-w-5xl">
-    <p class="label reveal">Moka Desarrollos — Taller de desarrollo web · Santiago, Chile</p>
-    <h1 class="reveal delay-100 mt-5 max-w-3xl font-display text-[2.1rem] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.7rem] md:text-[3.25rem]">
-      Construimos sitios web ligeros y menús digitales para cafeterías que necesitan velocidad y autonomía.
-    </h1>
-    <p class="reveal delay-200 mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
-      Páginas que cargan en menos de un segundo al escanear el QR, optimizadas para
-      Google Maps y conectadas directo a WhatsApp. Sin comisiones mensuales ni
-      plataformas pesadas.
-    </p>
-
-    <div class="reveal delay-300 mt-10 flex flex-wrap gap-4">
-      <a href="https://wa.me/56900000000?text=Hola%20Moka%2C%20quiero%20cotizar%20un%20sitio%20web" target="_blank" rel="noopener" class="btn btn-primary">
-        Cotizar un sitio web
-      </a>
-      <a href="#demos" class="btn btn-ghost">Ver demos</a>
+<section id="inicio" class="border-b border-line px-5 py-16 md:py-24">
+  <div class="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
+    <div>
+      <p class="label reveal">Menús QR &amp; sitios web · Santiago, Chile</p>
+      <h1 class="reveal delay-100 mt-5 text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.6rem] md:text-[3rem]">
+        Menús digitales y sitios web que no hacen esperar a tus clientes.
+      </h1>
+      <p class="reveal delay-200 mt-6 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">
+        Páginas que abren en menos de un segundo al escanear el QR en la mesa,
+        listas para Google Maps y con pedido directo a WhatsApp. Pago único, sin
+        comisiones ni plataformas pesadas.
+      </p>
+      <div class="reveal delay-300 mt-9 flex flex-wrap gap-4">
+        <a href="https://wa.me/56900000000?text=Hola%20Moka%2C%20quiero%20cotizar%20un%20sitio%20web" target="_blank" rel="noopener" class="btn btn-primary">
+          Cotizar por WhatsApp
+        </a>
+        <a href="#demos" class="btn btn-ghost">Ver demos</a>
+      </div>
     </div>
 
-    <dl class="reveal tactile-lg mt-14 grid divide-y divide-ink bg-white sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-      <div class="p-6">
-        <dt class="font-display text-xl font-semibold tracking-[-0.02em] text-ink">&lt;&nbsp;1&nbsp;s</dt>
-        <dd class="mt-1 text-sm text-ink-soft">de carga en la primera visita móvil</dd>
+    <div class="reveal delay-200 card p-6 sm:p-7">
+      <div class="mx-auto max-w-[220px]">
+        <svg viewBox="0 0 25 25" class="w-full text-espresso" role="img" aria-label="Código QR de demostración" fill="currentColor" shape-rendering="crispEdges">
+          <defs>
+            <g id="qr-finder">
+              <rect width="7" height="7"/>
+              <rect x="1" y="1" width="5" height="5" fill="#fff"/>
+              <rect x="2" y="2" width="3" height="3"/>
+            </g>
+          </defs>
+          <rect width="25" height="25" fill="#fff"/>
+          <use href="#qr-finder" x="0" y="0"/>
+          <use href="#qr-finder" x="18" y="0"/>
+          <use href="#qr-finder" x="0" y="18"/>
+          <rect x="16" y="16" width="5" height="5"/>
+          <rect x="17" y="17" width="3" height="3" fill="#fff"/>
+          <rect x="18" y="18" width="1" height="1"/>
+          <rect x="8" y="0" width="1" height="1"/><rect x="10" y="0" width="1" height="1"/><rect x="12" y="0" width="1" height="1"/><rect x="16" y="0" width="1" height="1"/>
+          <rect x="9" y="1" width="1" height="1"/><rect x="13" y="1" width="1" height="1"/><rect x="15" y="1" width="1" height="1"/>
+          <rect x="8" y="2" width="1" height="1"/><rect x="11" y="2" width="1" height="1"/><rect x="14" y="2" width="1" height="1"/><rect x="16" y="2" width="1" height="1"/>
+          <rect x="10" y="3" width="1" height="1"/><rect x="12" y="3" width="1" height="1"/><rect x="15" y="3" width="1" height="1"/>
+          <rect x="8" y="4" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/><rect x="16" y="4" width="1" height="1"/>
+          <rect x="11" y="5" width="1" height="1"/><rect x="14" y="5" width="1" height="1"/>
+          <rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/><rect x="15" y="6" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/>
+          <rect x="0" y="8" width="1" height="1"/><rect x="2" y="8" width="1" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/>
+          <rect x="9" y="8" width="1" height="1"/><rect x="11" y="8" width="1" height="1"/><rect x="13" y="8" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/>
+          <rect x="18" y="8" width="1" height="1"/><rect x="20" y="8" width="1" height="1"/><rect x="22" y="8" width="1" height="1"/><rect x="24" y="8" width="1" height="1"/>
+          <rect x="1" y="9" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/><rect x="8" y="9" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/><rect x="19" y="9" width="1" height="1"/><rect x="23" y="9" width="1" height="1"/>
+          <rect x="0" y="10" width="1" height="1"/><rect x="3" y="10" width="1" height="1"/><rect x="7" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="14" y="10" width="1" height="1"/><rect x="16" y="10" width="1" height="1"/><rect x="21" y="10" width="1" height="1"/><rect x="24" y="10" width="1" height="1"/>
+          <rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="9" y="11" width="1" height="1"/><rect x="13" y="11" width="1" height="1"/><rect x="18" y="11" width="1" height="1"/><rect x="22" y="11" width="1" height="1"/>
+          <rect x="1" y="12" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="8" y="12" width="1" height="1"/><rect x="11" y="12" width="1" height="1"/><rect x="15" y="12" width="1" height="1"/><rect x="17" y="12" width="1" height="1"/><rect x="20" y="12" width="1" height="1"/><rect x="24" y="12" width="1" height="1"/>
+          <rect x="0" y="13" width="1" height="1"/><rect x="5" y="13" width="1" height="1"/><rect x="7" y="13" width="1" height="1"/><rect x="12" y="13" width="1" height="1"/><rect x="19" y="13" width="1" height="1"/><rect x="23" y="13" width="1" height="1"/>
+          <rect x="3" y="14" width="1" height="1"/><rect x="6" y="14" width="1" height="1"/><rect x="10" y="14" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="16" y="14" width="1" height="1"/><rect x="21" y="14" width="1" height="1"/><rect x="24" y="14" width="1" height="1"/>
+          <rect x="8" y="15" width="1" height="1"/><rect x="11" y="15" width="1" height="1"/><rect x="13" y="15" width="1" height="1"/><rect x="15" y="15" width="1" height="1"/>
+          <rect x="8" y="16" width="1" height="1"/><rect x="10" y="16" width="1" height="1"/><rect x="13" y="16" width="1" height="1"/>
+          <rect x="9" y="17" width="1" height="1"/><rect x="12" y="17" width="1" height="1"/><rect x="14" y="17" width="1" height="1"/><rect x="22" y="17" width="1" height="1"/><rect x="24" y="17" width="1" height="1"/>
+          <rect x="8" y="18" width="1" height="1"/><rect x="11" y="18" width="1" height="1"/><rect x="13" y="18" width="1" height="1"/><rect x="23" y="18" width="1" height="1"/>
+          <rect x="10" y="19" width="1" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="16" y="19" width="1" height="1"/><rect x="18" y="19" width="1" height="1"/><rect x="21" y="19" width="1" height="1"/>
+          <rect x="8" y="20" width="1" height="1"/><rect x="12" y="20" width="1" height="1"/><rect x="15" y="20" width="1" height="1"/><rect x="19" y="20" width="1" height="1"/><rect x="24" y="20" width="1" height="1"/>
+          <rect x="9" y="21" width="1" height="1"/><rect x="13" y="21" width="1" height="1"/><rect x="17" y="21" width="1" height="1"/><rect x="20" y="21" width="1" height="1"/><rect x="23" y="21" width="1" height="1"/>
+          <rect x="8" y="22" width="1" height="1"/><rect x="11" y="22" width="1" height="1"/><rect x="14" y="22" width="1" height="1"/><rect x="16" y="22" width="1" height="1"/><rect x="21" y="22" width="1" height="1"/>
+          <rect x="10" y="23" width="1" height="1"/><rect x="12" y="23" width="1" height="1"/><rect x="15" y="23" width="1" height="1"/><rect x="18" y="23" width="1" height="1"/><rect x="22" y="23" width="1" height="1"/><rect x="24" y="23" width="1" height="1"/>
+          <rect x="9" y="24" width="1" height="1"/><rect x="13" y="24" width="1" height="1"/><rect x="16" y="24" width="1" height="1"/><rect x="19" y="24" width="1" height="1"/><rect x="23" y="24" width="1" height="1"/>
+        </svg>
       </div>
-      <div class="p-6">
-        <dt class="font-display text-xl font-semibold tracking-[-0.02em] text-ink">Móvil y escritorio</dt>
-        <dd class="mt-1 text-sm text-ink-soft">probado en ambas resoluciones antes de publicar</dd>
+      <p class="mt-5 text-sm leading-relaxed text-ink-soft">
+        Escanea esto con tu celular para probar un menú de carga instantánea.
+      </p>
+      <p class="mt-3 font-mono text-xs text-ink-soft">demo.mokadesarrollos.cl/carta</p>
+    </div>
+  </div>
+</section>
+
+<section class="border-b border-line px-5 py-14 md:py-16">
+  <div class="mx-auto max-w-5xl">
+    <div class="card p-6 md:p-9">
+      <p class="label">El argumento</p>
+      <h2 class="mt-2 text-xl font-semibold tracking-[-0.02em] text-ink sm:text-2xl">
+        Por qué un menú web y no un PDF
+      </h2>
+      <div class="reveal mt-7 space-y-6">
+        <div>
+          <div class="flex items-baseline justify-between gap-3">
+            <span class="font-semibold text-ink">Menú web Moka</span>
+            <span class="font-mono text-sm text-ink-soft">140 KB</span>
+          </div>
+          <div class="cmp-track mt-2"><div class="cmp-fill" style="width:6%;background:#273b31"></div></div>
+          <p class="mt-2 text-sm text-ink-soft">Carga en 0,4 s · lectura inmediata en el celular</p>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-3">
+            <span class="font-semibold text-ink">PDF tradicional por QR</span>
+            <span class="font-mono text-sm text-ink-soft">14.200 KB</span>
+          </div>
+          <div class="cmp-track mt-2"><div class="cmp-fill" style="width:100%;background:#a8542f"></div></div>
+          <p class="mt-2 text-sm text-ink-soft">Espera de 6 a 12 s · zoom incómodo en pantalla</p>
+        </div>
       </div>
-      <div class="p-6">
-        <dt class="font-display text-xl font-semibold tracking-[-0.02em] text-ink">A tu nombre</dt>
-        <dd class="mt-1 text-sm text-ink-soft">dominio, código y clientes quedan contigo</dd>
+      <p class="mt-6 border-t border-line pt-4 font-mono text-xs text-ink-soft">14.200&nbsp;KB ÷ 140&nbsp;KB ≈ 100× más liviano</p>
+    </div>
+
+    <dl class="mt-8 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
+      <div class="bg-paper p-5">
+        <dt class="font-semibold text-ink">Pago único</dt>
+        <dd class="mt-1 text-sm text-ink-soft">sin mensualidad ni comisión por pedido</dd>
+      </div>
+      <div class="bg-paper p-5">
+        <dt class="font-semibold text-ink">A nombre de tu local</dt>
+        <dd class="mt-1 text-sm text-ink-soft">dominio y sitio quedan contigo</dd>
+      </div>
+      <div class="bg-paper p-5">
+        <dt class="font-semibold text-ink">Probado en celular</dt>
+        <dd class="mt-1 text-sm text-ink-soft">gama alta y baja antes de publicar</dd>
       </div>
     </dl>
   </div>
 </section>
 
-<section id="servicios" class="border-b border-ink px-5 py-16 md:py-24">
+<section id="servicios" class="border-b border-line px-5 py-16 md:py-24">
   <div class="mx-auto max-w-5xl">
     <p class="label">Servicios</p>
-    <h2 class="mt-4 max-w-2xl font-display text-2xl font-medium leading-tight tracking-[-0.02em] text-ink sm:text-[2rem]">
-      Lo que construimos
+    <h2 class="mt-4 max-w-2xl text-2xl font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[2rem]">
+      Lo que hacemos
     </h2>
 
-    <dl class="mt-12 divide-y divide-line border-y border-ink">
+    <dl class="mt-12 divide-y divide-line border-y border-line">
       <div class="grid gap-2 py-6 md:grid-cols-[260px_1fr] md:gap-10">
-        <dt class="font-display text-lg font-semibold tracking-[-0.01em] text-ink">Sitios web para cafeterías y gastronomía</dt>
+        <dt class="text-lg font-semibold tracking-[-0.01em] text-ink">Sitios web para cafeterías y gastronomía</dt>
         <dd class="text-sm leading-relaxed text-ink-soft">
-          Diseñamos carta, reservas por formulario corto, horarios y ubicación en Google
-          Maps. Pensados para el celular, donde te busca la mayoría de tus clientes.
+          Carta, horarios y ubicación en Google Maps, todo pensado para el celular,
+          donde te busca la mayoría de tus clientes.
         </dd>
       </div>
       <div class="grid gap-2 py-6 md:grid-cols-[260px_1fr] md:gap-10">
-        <dt class="font-display text-lg font-semibold tracking-[-0.01em] text-ink">Menús digitales por QR</dt>
+        <dt class="text-lg font-semibold tracking-[-0.01em] text-ink">Menús digitales por QR</dt>
         <dd class="text-sm leading-relaxed text-ink-soft">
-          Optimizamos cada menú para que abra en menos de un segundo al escanear el
-          código en la mesa. Sin PDF de 15&nbsp;MB, sin apps de terceros. Actualizas
-          precios y agotados tú mismo desde el teléfono.
+          Abren en menos de un segundo al escanear el código en la mesa. Sin PDF de
+          15&nbsp;MB, sin apps de terceros. Cambias precios y agotados tú mismo desde el teléfono.
         </dd>
       </div>
       <div class="grid gap-2 py-6 md:grid-cols-[260px_1fr] md:gap-10">
-        <dt class="font-display text-lg font-semibold tracking-[-0.01em] text-ink">Desarrollo a medida</dt>
+        <dt class="text-lg font-semibold tracking-[-0.01em] text-ink">Reservas y pedidos simples</dt>
         <dd class="text-sm leading-relaxed text-ink-soft">
-          Garantizamos APIs y back-office con Python y FastAPI: catálogos, pedidos,
-          integraciones y paneles internos para lo que tu negocio necesita resolver.
+          Formulario de reserva corto, pedido para llevar y avisos de agotados,
+          conectados directo a tu WhatsApp.
         </dd>
       </div>
     </dl>
 
     <div class="mt-14">
-      <h3 class="font-display text-lg font-semibold tracking-[-0.01em] text-ink">Cómo trabajamos un sitio</h3>
+      <h3 class="text-lg font-semibold tracking-[-0.01em] text-ink">Cómo trabajamos un sitio</h3>
       <ol class="mt-6 grid gap-6 md:grid-cols-3">
         <li class="flex gap-4">
-          <span class="tactile flex h-9 w-9 shrink-0 items-center justify-center bg-amber font-display text-sm font-bold text-ink-inv">1</span>
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-espresso text-sm font-bold text-ink-inv">1</span>
           <p class="text-sm leading-relaxed text-ink-soft">
             Nos cuentas el negocio y nos envías el contenido que tengas: carta, fotos, textos.
           </p>
         </li>
         <li class="flex gap-4">
-          <span class="tactile flex h-9 w-9 shrink-0 items-center justify-center bg-amber font-display text-sm font-bold text-ink-inv">2</span>
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-espresso text-sm font-bold text-ink-inv">2</span>
           <p class="text-sm leading-relaxed text-ink-soft">
             Montamos el sitio, lo probamos en móvil y escritorio y generamos el QR listo para imprimir.
           </p>
         </li>
         <li class="flex gap-4">
-          <span class="tactile flex h-9 w-9 shrink-0 items-center justify-center bg-amber font-display text-sm font-bold text-ink-inv">3</span>
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-espresso text-sm font-bold text-ink-inv">3</span>
           <p class="text-sm leading-relaxed text-ink-soft">
             Publicamos, configuramos Google Maps y te dejamos una capacitación de 30 minutos para editarlo.
           </p>
@@ -298,10 +373,10 @@ tailwind.config = {
   </div>
 </section>
 
-<section id="demos" class="border-b border-ink px-5 py-16 md:py-24">
+<section id="demos" class="border-b border-line px-5 py-16 md:py-24">
   <div class="mx-auto max-w-5xl">
     <p class="label">Demos</p>
-    <h2 class="mt-4 max-w-2xl font-display text-2xl font-medium leading-tight tracking-[-0.02em] text-ink sm:text-[2rem]">
+    <h2 class="mt-4 max-w-2xl text-2xl font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[2rem]">
       Ejemplos por tipo de negocio
     </h2>
     <p class="mt-5 max-w-2xl leading-relaxed text-ink-soft">
@@ -309,43 +384,17 @@ tailwind.config = {
       los tiempos de carga reales.
     </p>
 
-    <div class="tactile mt-10 bg-white p-6 md:p-8">
-      <p class="label">Comparación</p>
-      <h3 class="mt-2 font-display text-lg font-semibold tracking-[-0.01em] text-ink">
-        Por qué no dejamos un PDF en la mesa
-      </h3>
-      <div class="reveal mt-6 space-y-6">
-        <div>
-          <div class="flex items-baseline justify-between gap-3">
-            <span class="font-display font-semibold text-ink">Menú web Moka</span>
-            <span class="font-mono text-sm text-ink-soft">140 KB</span>
-          </div>
-          <div class="cmp-track mt-2"><div class="cmp-fill" style="width:6%;background:#1e3a2f"></div></div>
-          <p class="mt-2 text-sm text-ink-soft">Carga en 0,4 s · lectura inmediata en el celular</p>
-        </div>
-        <div>
-          <div class="flex items-baseline justify-between gap-3">
-            <span class="font-display font-semibold text-ink">PDF tradicional por QR</span>
-            <span class="font-mono text-sm text-ink-soft">14.200 KB</span>
-          </div>
-          <div class="cmp-track mt-2"><div class="cmp-fill" style="width:100%;background:#b45309"></div></div>
-          <p class="mt-2 text-sm text-ink-soft">Espera de 6 a 12 s · zoom incómodo en pantalla</p>
-        </div>
-      </div>
-      <p class="mt-6 border-t border-line pt-4 font-mono text-xs text-ink-soft">14.200&nbsp;KB ÷ 140&nbsp;KB ≈ 100× más liviano</p>
-    </div>
-
     <div class="mt-10 grid gap-6 md:grid-cols-3">
-      <article class="reveal tactile flex flex-col bg-white">
+      <article class="reveal card flex flex-col overflow-hidden">
         <div class="browserbar">
-          <span class="dot" style="background:#b45309"></span>
-          <span class="dot" style="background:#e7e0d3"></span>
-          <span class="dot" style="background:#e7e0d3"></span>
+          <span class="dot" style="background:#a8542f"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
           <span class="url">demo.mokadesarrollos.cl/cafe-especialidad</span>
         </div>
         <div class="flex-1 p-5">
-          <p class="label" style="color:#1e3a2f">Café de especialidad</p>
-          <p class="mt-1 font-display text-base font-semibold tracking-[-0.01em] text-ink">Carta de cafetería</p>
+          <p class="label" style="color:#273b31">Café de especialidad</p>
+          <p class="mt-1 text-base font-semibold tracking-[-0.01em] text-ink">Carta de cafetería</p>
           <div class="mt-4 space-y-2.5 text-sm text-ink">
             <div class="flex items-baseline gap-2"><span>Espresso doble</span><span class="leader"></span><span class="font-mono text-ink-soft">2.800</span></div>
             <div class="flex items-baseline gap-2"><span>Flat white</span><span class="leader"></span><span class="font-mono text-ink-soft">4.200</span></div>
@@ -354,14 +403,14 @@ tailwind.config = {
           </div>
           <p class="mt-4 text-xs leading-relaxed text-ink-soft">Notas de origen y método, con pedido directo a WhatsApp.</p>
         </div>
-        <dl class="grid grid-cols-2 border-t border-ink text-center">
-          <div class="border-r border-ink p-3">
+        <dl class="grid grid-cols-2 border-t border-line text-center">
+          <div class="border-r border-line p-3">
             <dt class="label" style="font-size:0.62rem">Carga</dt>
-            <dd class="mt-0.5 font-display font-semibold text-ink">&lt; 0,5 s</dd>
+            <dd class="mt-0.5 font-semibold text-ink">&lt; 0,4 s</dd>
           </div>
           <div class="p-3">
             <dt class="label" style="font-size:0.62rem">Peso</dt>
-            <dd class="mt-0.5 font-display font-semibold text-ink">110 KB</dd>
+            <dd class="mt-0.5 font-semibold text-ink">95 KB</dd>
           </div>
         </dl>
         <div class="p-4">
@@ -369,16 +418,16 @@ tailwind.config = {
         </div>
       </article>
 
-      <article class="reveal delay-100 tactile flex flex-col bg-white">
+      <article class="reveal delay-100 card flex flex-col overflow-hidden">
         <div class="browserbar">
-          <span class="dot" style="background:#b45309"></span>
-          <span class="dot" style="background:#e7e0d3"></span>
-          <span class="dot" style="background:#e7e0d3"></span>
+          <span class="dot" style="background:#a8542f"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
           <span class="url">demo.mokadesarrollos.cl/pasteleria</span>
         </div>
         <div class="flex-1 p-5">
-          <p class="label" style="color:#1e3a2f">Pastelería</p>
-          <p class="mt-1 font-display text-base font-semibold tracking-[-0.01em] text-ink">Carta de pastelería</p>
+          <p class="label" style="color:#273b31">Pastelería</p>
+          <p class="mt-1 text-base font-semibold tracking-[-0.01em] text-ink">Carta de pastelería</p>
           <div class="mt-4 space-y-2.5 text-sm text-ink">
             <div class="flex items-baseline gap-2"><span>Croissant de mantequilla</span><span class="leader"></span><span class="font-mono text-ink-soft">2.900</span></div>
             <div class="flex items-baseline gap-2"><span>Tarta de frambuesa</span><span class="leader"></span><span class="font-mono text-ink-soft">4.600</span></div>
@@ -387,14 +436,14 @@ tailwind.config = {
           </div>
           <p class="mt-4 text-xs leading-relaxed text-ink-soft">Horarios que cambian por día y reserva de mesa por formulario corto.</p>
         </div>
-        <dl class="grid grid-cols-2 border-t border-ink text-center">
-          <div class="border-r border-ink p-3">
+        <dl class="grid grid-cols-2 border-t border-line text-center">
+          <div class="border-r border-line p-3">
             <dt class="label" style="font-size:0.62rem">Carga</dt>
-            <dd class="mt-0.5 font-display font-semibold text-ink">&lt; 0,5 s</dd>
+            <dd class="mt-0.5 font-semibold text-ink">&lt; 0,5 s</dd>
           </div>
           <div class="p-3">
             <dt class="label" style="font-size:0.62rem">Peso</dt>
-            <dd class="mt-0.5 font-display font-semibold text-ink">110 KB</dd>
+            <dd class="mt-0.5 font-semibold text-ink">120 KB</dd>
           </div>
         </dl>
         <div class="p-4">
@@ -402,16 +451,16 @@ tailwind.config = {
         </div>
       </article>
 
-      <article class="reveal delay-200 tactile flex flex-col bg-white">
+      <article class="reveal delay-200 card flex flex-col overflow-hidden">
         <div class="browserbar">
-          <span class="dot" style="background:#b45309"></span>
-          <span class="dot" style="background:#e7e0d3"></span>
-          <span class="dot" style="background:#e7e0d3"></span>
+          <span class="dot" style="background:#a8542f"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
           <span class="url">demo.mokadesarrollos.cl/tostador</span>
         </div>
         <div class="flex-1 p-5">
-          <p class="label" style="color:#1e3a2f">Tostador</p>
-          <p class="mt-1 font-display text-base font-semibold tracking-[-0.01em] text-ink">Catálogo de grano</p>
+          <p class="label" style="color:#273b31">Tostador</p>
+          <p class="mt-1 text-base font-semibold tracking-[-0.01em] text-ink">Catálogo de grano</p>
           <div class="mt-4 space-y-2.5 text-sm text-ink">
             <div class="flex items-baseline gap-2"><span>Huila lavado · 250 g</span><span class="leader"></span><span class="font-mono text-ink-soft">8.900</span></div>
             <div class="flex items-baseline gap-2"><span>Nariño honey · 250 g</span><span class="leader"></span><span class="font-mono text-ink-soft">9.800</span></div>
@@ -420,14 +469,14 @@ tailwind.config = {
           </div>
           <p class="mt-4 text-xs leading-relaxed text-ink-soft">Selector de molienda, ficha de origen y pedidos mayoristas por correo.</p>
         </div>
-        <dl class="grid grid-cols-2 border-t border-ink text-center">
-          <div class="border-r border-ink p-3">
+        <dl class="grid grid-cols-2 border-t border-line text-center">
+          <div class="border-r border-line p-3">
             <dt class="label" style="font-size:0.62rem">Carga</dt>
-            <dd class="mt-0.5 font-display font-semibold text-ink">&lt; 0,5 s</dd>
+            <dd class="mt-0.5 font-semibold text-ink">&lt; 0,5 s</dd>
           </div>
           <div class="p-3">
             <dt class="label" style="font-size:0.62rem">Peso</dt>
-            <dd class="mt-0.5 font-display font-semibold text-ink">110 KB</dd>
+            <dd class="mt-0.5 font-semibold text-ink">130 KB</dd>
           </div>
         </dl>
         <div class="p-4">
@@ -438,111 +487,38 @@ tailwind.config = {
   </div>
 </section>
 
-<section id="ingenieria" class="on-dark border-b border-ink bg-espresso px-5 py-16 text-ink-inv md:py-24">
+<section id="calidad" class="on-dark border-b border-line bg-espresso px-5 py-16 text-ink-inv md:py-24">
   <div class="mx-auto max-w-5xl">
-    <p class="label">Ingeniería y calidad</p>
-    <h2 class="mt-4 max-w-2xl font-display text-2xl font-medium leading-tight tracking-[-0.02em] sm:text-[2rem]">
-      Cada entrega se prueba antes de publicarse
+    <p class="label">Calidad</p>
+    <h2 class="mt-4 max-w-2xl text-2xl font-semibold leading-tight tracking-[-0.02em] sm:text-[2rem]">
+      Cada menú se prueba antes de publicarse
     </h2>
     <p class="mt-5 max-w-2xl leading-relaxed text-ink-inv-soft">
-      No entregamos sitios sin probar. Ejecutamos pruebas automatizadas de carga y
-      visualización en múltiples modelos móviles antes de cada lanzamiento: corremos
-      Playwright en resoluciones de móvil y escritorio, revisamos los tiempos de carga y
-      dejamos el código ordenado para poder mantenerlo.
-    </p>
-    <p class="mt-4 font-mono text-xs text-ink-inv-soft">
-      Desarrollado y testeado bajo estándares de ingeniería por Francisco Cid.
+      Antes de publicar, probamos tu menú en más de 15 modelos de celular distintos
+      —Android y iPhone, gama alta y baja— para que no haya errores ni caídas cuando
+      llega la hora peak.
     </p>
 
-    <div class="mt-12 overflow-x-auto">
-      <table class="w-full min-w-[34rem] border-collapse text-left text-sm">
-        <thead>
-          <tr class="border-b border-line-dark text-ink-inv-soft">
-            <th class="py-3 pr-4 font-display font-semibold">Capa</th>
-            <th class="py-3 pr-4 font-display font-semibold">Herramienta</th>
-            <th class="py-3 font-display font-semibold">Versión</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b border-line-dark">
-            <td class="py-3 pr-4">Frontend</td>
-            <td class="py-3 pr-4">HTML5 semántico · Tailwind CSS</td>
-            <td class="py-3 font-mono text-ink-inv-soft">3.4</td>
-          </tr>
-          <tr class="border-b border-line-dark">
-            <td class="py-3 pr-4">Backend</td>
-            <td class="py-3 pr-4">Python · FastAPI</td>
-            <td class="py-3 font-mono text-ink-inv-soft">3.12 · 0.115</td>
-          </tr>
-          <tr class="border-b border-line-dark">
-            <td class="py-3 pr-4">Base de datos</td>
-            <td class="py-3 pr-4">PostgreSQL</td>
-            <td class="py-3 font-mono text-ink-inv-soft">16</td>
-          </tr>
-          <tr class="border-b border-line-dark">
-            <td class="py-3 pr-4">Pruebas E2E</td>
-            <td class="py-3 pr-4">Playwright</td>
-            <td class="py-3 font-mono text-ink-inv-soft">1.48</td>
-          </tr>
-          <tr class="border-b border-line-dark">
-            <td class="py-3 pr-4">Pruebas de API</td>
-            <td class="py-3 pr-4">Pytest</td>
-            <td class="py-3 font-mono text-ink-inv-soft">8.3</td>
-          </tr>
-          <tr class="border-b border-line-dark">
-            <td class="py-3 pr-4">Integración continua</td>
-            <td class="py-3 pr-4">GitHub Actions</td>
-            <td class="py-3 font-mono text-ink-inv-soft">—</td>
-          </tr>
-          <tr>
-            <td class="py-3 pr-4">Contenedores</td>
-            <td class="py-3 pr-4">Docker</td>
-            <td class="py-3 font-mono text-ink-inv-soft">27</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="mt-12 grid gap-x-10 gap-y-6 sm:grid-cols-2">
-      <div class="reveal border-t border-line-dark pt-4">
-        <h3 class="font-display font-semibold">Pruebas en cada resolución</h3>
-        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">La suite de Playwright corre en viewport de móvil (390&nbsp;px) y escritorio (1440&nbsp;px) antes de cada publicación.</p>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2">
+      <div class="reveal card-dark p-6">
+        <h3 class="font-semibold">Probado en +15 celulares</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">Tu menú se abre igual de rápido en un teléfono nuevo y en uno de hace cinco años.</p>
       </div>
-      <div class="reveal border-t border-line-dark pt-4">
-        <h3 class="font-display font-semibold">Presupuesto de peso</h3>
-        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">Cada página se mantiene bajo 150&nbsp;KB. El pipeline falla si una entrega supera ese límite.</p>
+      <div class="reveal delay-100 card-dark p-6">
+        <h3 class="font-semibold">Aguanta la hora peak</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">Decenas de personas escaneando el QR al mismo tiempo sin que el sitio se caiga.</p>
       </div>
-      <div class="reveal border-t border-line-dark pt-4">
-        <h3 class="font-display font-semibold">Datos de prueba versionados</h3>
-        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">Los fixtures viven en el repositorio y se revisan en cada cambio, no en una base aparte.</p>
+      <div class="reveal card-dark p-6">
+        <h3 class="font-semibold">Lo actualizas tú</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">Cambias precios y marcas agotados desde tu teléfono, sin depender de nosotros.</p>
       </div>
-      <div class="reveal border-t border-line-dark pt-4">
-        <h3 class="font-display font-semibold">Código para mantener</h3>
-        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">Tipado, formateado y documentado para poder retomarlo meses después sin adivinar.</p>
+      <div class="reveal delay-100 card-dark p-6">
+        <h3 class="font-semibold">Queda a tu nombre</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink-inv-soft">Dominio, contenido y sitio son de tu local. Si algún día te vas, te lo llevas.</p>
       </div>
     </div>
 
-    <h3 class="mt-14 font-display text-lg font-semibold tracking-[-0.01em]">Proyectos de software</h3>
-    <div class="mt-5 grid gap-6 md:grid-cols-2">
-      <article class="reveal tactile-inv bg-[#211c19] p-6">
-        <h4 class="font-display text-lg font-semibold tracking-[-0.01em]">API Test Harness</h4>
-        <p class="mt-3 text-sm leading-relaxed text-ink-inv-soft">
-          Pruebas de contrato e integración sobre una API FastAPI. Datos de prueba
-          versionados y reporte HTML adjunto a cada pull request.
-        </p>
-        <p class="mt-4 font-mono text-xs text-ink-inv-soft">Pytest · FastAPI · GitHub Actions · Docker</p>
-        <a href="https://github.com/mokadesarrollos/api-test-harness" target="_blank" rel="noopener" class="link-inv mt-4 inline-block text-sm">Ver repositorio en GitHub</a>
-      </article>
-      <article class="reveal tactile-inv bg-[#211c19] p-6">
-        <h4 class="font-display text-lg font-semibold tracking-[-0.01em]">E2E Automation Framework</h4>
-        <p class="mt-3 text-sm leading-relaxed text-ink-inv-soft">
-          Suite end-to-end con Playwright y patrón Page Object, ejecución paralela y
-          video de cada fallo. Bajó la regresión manual de dos días a veinte minutos.
-        </p>
-        <p class="mt-4 font-mono text-xs text-ink-inv-soft">Playwright · Python · Allure · Docker</p>
-        <a href="https://github.com/mokadesarrollos/e2e-automation-framework" target="_blank" rel="noopener" class="link-inv mt-4 inline-block text-sm">Ver repositorio en GitHub</a>
-      </article>
-    </div>
+    <p class="mt-10 font-mono text-xs text-ink-inv-soft">Cada entrega se revisa a mano antes de salir.</p>
   </div>
 </section>
 
@@ -550,11 +526,11 @@ tailwind.config = {
   <div class="mx-auto grid max-w-5xl gap-12 md:grid-cols-[1.3fr_1fr] md:gap-16">
     <div>
       <p class="label">Contacto</p>
-      <h2 class="mt-4 font-display text-2xl font-medium leading-tight tracking-[-0.02em] text-ink sm:text-[2rem]">
+      <h2 class="mt-4 text-2xl font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[2rem]">
         Conversemos sobre tu local
       </h2>
       <p class="mt-5 leading-relaxed text-ink-soft">
-        Evaluamos tu carta actual y te mostramos cómo quedaría tu web lista para mesa.
+        Miramos tu carta actual y te mostramos cómo quedaría tu web lista para la mesa.
         Respondemos el mismo día con alcance, plazo y precio.
       </p>
       <div class="mt-9 flex flex-wrap gap-4">
@@ -562,37 +538,34 @@ tailwind.config = {
           Cotizar por WhatsApp
         </a>
         <a href="mailto:r.silvahevia@gmail.com" class="btn btn-ghost">Escribir un correo</a>
-        <a href="assets/cv-francisco-cid.pdf" download class="btn btn-ghost">Descargar CV (PDF)</a>
       </div>
     </div>
-    <dl class="space-y-5 self-center border-t border-ink pt-6 text-sm md:border-l md:border-t-0 md:pl-8 md:pt-0">
+    <dl class="space-y-5 self-center border-t border-line pt-6 text-sm md:border-l md:border-t-0 md:pl-8 md:pt-0">
       <div>
         <dt class="label">Correo</dt>
         <dd class="mt-1"><a href="mailto:r.silvahevia@gmail.com" class="link-accent">r.silvahevia@gmail.com</a></dd>
       </div>
       <div>
+        <dt class="label">WhatsApp</dt>
+        <dd class="mt-1"><a href="https://wa.me/56900000000" target="_blank" rel="noopener" class="link-accent">+56 9 0000 0000</a></dd>
+      </div>
+      <div>
         <dt class="label">Ubicación</dt>
-        <dd class="mt-1 text-ink-soft">Santiago, Chile — trabajo remoto o presencial en la RM</dd>
+        <dd class="mt-1 text-ink-soft">Santiago, Chile — remoto o presencial en la RM</dd>
       </div>
       <div>
-        <dt class="label">LinkedIn</dt>
-        <dd class="mt-1"><a href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener" class="link-accent">linkedin.com/in/tu-usuario</a></dd>
-      </div>
-      <div>
-        <dt class="label">Repositorios</dt>
-        <dd class="mt-1"><a href="https://github.com/mokadesarrollos" target="_blank" rel="noopener" class="link-accent">github.com/mokadesarrollos</a></dd>
+        <dt class="label">Respuesta</dt>
+        <dd class="mt-1 text-ink-soft">el mismo día hábil</dd>
       </div>
     </dl>
   </div>
 </section>
 </main>
 
-<footer class="border-t border-ink px-5 py-10">
+<footer class="border-t border-line px-5 py-10">
   <div class="mx-auto flex max-w-5xl flex-col gap-4 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
     <p>© <span id="year"></span> Moka Desarrollos · Santiago, Chile</p>
     <div class="flex flex-wrap gap-5">
-      <a href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener" class="nav-link">LinkedIn</a>
-      <a href="https://github.com/mokadesarrollos" target="_blank" rel="noopener" class="nav-link">GitHub</a>
       <a href="mailto:r.silvahevia@gmail.com" class="nav-link">Correo</a>
       <a href="https://wa.me/56900000000" target="_blank" rel="noopener" class="nav-link">WhatsApp</a>
     </div>
