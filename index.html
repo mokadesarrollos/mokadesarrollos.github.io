@@ -3,340 +3,329 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Francisco Cid — Webs para Cafeterías & Desarrollo QA/Backend</title>
-<meta name="description" content="Sitios web modernos para cafeterías y comercios gastronómicos: menús QR ultrarrápidos, SEO local y la robustez técnica de un desarrollador Backend & QA (Python/FastAPI).">
+<title>Francisco Cid — Cartas digitales para cafeterías · QA y backend</title>
+<meta name="description" content="Francisco Cid: cartas digitales por QR para cafeterías y comercios gastronómicos, y trabajo de analista de QA y desarrollo backend con Python, FastAPI, Playwright y Robot Framework.">
 <meta name="author" content="Francisco Cid">
-<meta property="og:title" content="Francisco Cid — Webs para Cafeterías & Desarrollo QA/Backend">
-<meta property="og:description" content="Diseño web moderno para cafeterías + portafolio técnico de QA Analyst & Backend Developer.">
+<meta property="og:title" content="Francisco Cid — Cartas digitales para cafeterías · QA y backend">
+<meta property="og:description" content="Dos servicios: sitios web y cartas QR para cafeterías, y aseguramiento de calidad de software con automatización de pruebas y APIs en Python.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        bg: '#0e0c0b',
-        card: '#181412',
-        elevated: '#231d19',
-        brand: { DEFAULT: '#d97706', dark: '#b45309', light: '#f59e0b' },
-        cream: '#f5efe6',
-        soft: '#d7ccc8',
-        muted: '#8d8076',
+        bg: '#f7f6f2',
+        surface: '#ffffff',
+        ink: '#111827',
+        'ink-soft': '#4b5563',
+        line: '#e5e7eb',
+        accent: { DEFAULT: '#1b4332', hover: '#14342a' },
       },
       fontFamily: {
-        sans: ['Outfit', 'system-ui', 'sans-serif'],
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
-      },
-      boxShadow: {
-        glow: '0 20px 60px -15px rgba(120, 53, 15, 0.45)',
+        display: ['"Space Grotesk"', 'Georgia', 'sans-serif'],
+        sans: ['Archivo', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
     },
   },
 };
 </script>
 <style>
-  :root { color-scheme: dark; }
-  body { background: #0e0c0b; }
-  section[id] { scroll-margin-top: 5rem; }
-  .glass { backdrop-filter: blur(12px); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
-  .grain::before {
-    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35;
-    background: radial-gradient(600px circle at 20% 0%, rgba(217,119,6,.14), transparent 55%),
-                radial-gradient(700px circle at 90% 20%, rgba(245,158,11,.10), transparent 55%);
+  :root {
+    color-scheme: light;
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --ink: #111827;
+    --ink-soft: #4b5563;
+    --line: #e5e7eb;
+    --accent: #1b4332;
+    --accent-hover: #14342a;
   }
-  [data-lucide] { width: 1em; height: 1em; }
+  body { background: var(--bg); color: var(--ink); }
+  section[id] { scroll-margin-top: 4.5rem; }
+
+  .label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .link-accent {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: inset 0 -1px 0 rgba(27, 67, 50, 0.35);
+    transition: box-shadow 150ms ease, color 150ms ease;
+  }
+  .link-accent:hover { box-shadow: inset 0 -2px 0 var(--accent); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: background-color 150ms ease, border-color 150ms ease, transform 180ms ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--accent); color: var(--bg); }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost { border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+  .btn-ghost:hover { border-color: #9ca3af; }
+
+  a:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn, .link-accent, .nav-link { transition: none; }
+    .btn:active { transform: none; }
+  }
+
+  .nav-link { transition: color 150ms ease; }
+  .nav-link:hover { color: var(--ink); }
 </style>
 </head>
-<body class="font-sans text-soft antialiased selection:bg-brand/30 selection:text-cream">
+<body class="font-sans antialiased selection:bg-accent/15">
 
-<!-- NAV -->
-<header class="fixed inset-x-0 top-0 z-50 glass">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-    <a href="#inicio" class="flex items-center gap-2.5">
-      <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand text-bg text-lg"><i data-lucide="coffee"></i></span>
-      <span class="leading-tight">
-        <span class="block font-semibold text-cream">Francisco Cid</span>
-        <span class="block text-[11px] uppercase tracking-[0.2em] text-muted">Webs &amp; Code</span>
-      </span>
+<header class="sticky top-0 z-40 border-b border-line bg-bg">
+  <nav class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3">
+    <a href="#inicio" class="leading-tight">
+      <span class="block font-display text-base font-semibold text-ink">Francisco Cid</span>
+      <span class="label">desarrollo web · qa</span>
     </a>
-    <div class="hidden items-center gap-8 text-sm text-soft md:flex">
-      <a href="#servicios" class="transition hover:text-cream">Servicios Cafeterías</a>
-      <a href="#demos" class="transition hover:text-cream">Demos en Vivo</a>
-      <a href="#stack" class="transition hover:text-cream">Stack &amp; QA</a>
-      <a href="#contacto" class="transition hover:text-cream">Contacto</a>
+    <div class="hidden items-center gap-7 text-sm text-ink-soft md:flex">
+      <a href="#cafeterias" class="nav-link">Cafeterías</a>
+      <a href="#software" class="nav-link">Software y QA</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
     </div>
-    <a href="https://wa.me/56900000000?text=Hola%20Francisco%2C%20quiero%20cotizar%20un%20sitio%20web%20para%20mi%20cafeter%C3%ADa" target="_blank" rel="noopener"
-       class="inline-flex items-center gap-2 rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-bg shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-light">
-      <i data-lucide="message-circle"></i> Cotizar Sitio Web
+    <a href="https://wa.me/56900000000?text=Hola%20Francisco%2C%20quiero%20consultarte" target="_blank" rel="noopener" class="btn btn-primary hidden sm:inline-flex">
+      Escribir por WhatsApp
     </a>
   </nav>
 </header>
 
 <main>
-<!-- HERO -->
-<section id="inicio" class="grain relative overflow-hidden px-5 pt-36 pb-24">
-  <div class="relative mx-auto max-w-4xl text-center">
-    <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-soft">
-      🚀 Sitios Web para Cafeterías &amp; Soluciones de Software
-    </span>
-    <h1 class="mt-7 font-display text-4xl font-bold leading-[1.1] text-cream sm:text-5xl md:text-6xl">
-      Transformo la experiencia de tu cafetería en una presencia digital irresistible
-    </h1>
-    <p class="mx-auto mt-6 max-w-2xl text-lg text-soft">
-      Diseño web moderno, menús QR que cargan en menos de un segundo y la robustez técnica
-      de un desarrollador <span class="text-cream">Backend &amp; QA</span>. Tu carta, tus reservas y tu marca,
-      construidas con estándares de ingeniería.
-    </p>
-    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <a href="#demos" class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 font-semibold text-bg shadow-glow transition-all duration-300 hover:-translate-y-1 hover:bg-brand-light sm:w-auto">
-        <i data-lucide="eye"></i> Explorar Demos de Cafeterías
-      </a>
-      <a href="#stack" class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-6 py-3.5 font-semibold text-cream transition-all duration-300 hover:-translate-y-1 hover:border-white/30 sm:w-auto">
-        <i data-lucide="file-user"></i> Ver Perfil Técnico &amp; CV
-      </a>
-    </div>
-    <dl class="mx-auto mt-14 grid max-w-lg grid-cols-3 gap-6 text-center">
-      <div><dt class="font-display text-2xl text-cream">&lt;1s</dt><dd class="text-xs text-muted">carga del menú</dd></div>
-      <div><dt class="font-display text-2xl text-cream">0%</dt><dd class="text-xs text-muted">comisiones mensuales</dd></div>
-      <div><dt class="font-display text-2xl text-cream">100%</dt><dd class="text-xs text-muted">mobile first</dd></div>
-    </dl>
-  </div>
-</section>
-
-<!-- DEMOS -->
-<section id="demos" class="border-t border-white/5 bg-card/40 px-5 py-24">
-  <div class="mx-auto max-w-6xl">
-    <div class="max-w-2xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-light">Demos en Vivo</p>
-      <h2 class="mt-3 font-display text-3xl text-cream sm:text-4xl">Muestras reales para tu tipo de negocio</h2>
-      <p class="mt-4 text-soft">Cada demo es una interfaz funcional pensada para convertir visitas en pedidos y reservas.</p>
-    </div>
-    <div class="mt-12 grid gap-6 md:grid-cols-3">
-      <!-- Demo 1 -->
-      <article class="group glass overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
-        <div class="flex items-center gap-1.5 border-b border-white/5 bg-elevated px-4 py-2.5">
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="ml-3 truncate text-[11px] text-muted">specialtycoffee.demo</span>
-        </div>
-        <div class="grid h-40 place-items-center bg-gradient-to-br from-brand-dark/40 via-elevated to-bg text-5xl">☕</div>
-        <div class="p-6">
-          <span class="rounded-md bg-brand/15 px-2 py-1 text-[11px] font-semibold text-brand-light">Specialty Coffee House</span>
-          <h3 class="mt-3 font-display text-xl text-cream">Menú digital por QR</h3>
-          <p class="mt-2 text-sm text-soft">Carta interactiva que carga en menos de 1 segundo y botón flotante de pedidos directo a WhatsApp.</p>
-          <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-muted">
-            <span class="rounded border border-white/10 px-2 py-0.5">Menú QR</span>
-            <span class="rounded border border-white/10 px-2 py-0.5">Pedidos WhatsApp</span>
-            <span class="rounded border border-white/10 px-2 py-0.5">Carga &lt;1s</span>
-          </div>
-          <a href="#contacto" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-light transition group-hover:gap-2.5">
-            Ver Demo Interactiva <i data-lucide="arrow-right"></i>
-          </a>
-        </div>
-      </article>
-      <!-- Demo 2 -->
-      <article class="group glass overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
-        <div class="flex items-center gap-1.5 border-b border-white/5 bg-elevated px-4 py-2.5">
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="ml-3 truncate text-[11px] text-muted">bakerybistro.demo</span>
-        </div>
-        <div class="grid h-40 place-items-center bg-gradient-to-br from-amber-700/40 via-elevated to-bg text-5xl">🥐</div>
-        <div class="p-6">
-          <span class="rounded-md bg-brand/15 px-2 py-1 text-[11px] font-semibold text-brand-light">Bakery &amp; Coffee Bistro</span>
-          <h3 class="mt-3 font-display text-xl text-cream">Landing de alta conversión</h3>
-          <p class="mt-2 text-sm text-soft">Integración con Google Maps, horarios dinámicos y reserva de mesas en pocos toques.</p>
-          <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-muted">
-            <span class="rounded border border-white/10 px-2 py-0.5">Google Maps</span>
-            <span class="rounded border border-white/10 px-2 py-0.5">Horarios dinámicos</span>
-            <span class="rounded border border-white/10 px-2 py-0.5">Reservas</span>
-          </div>
-          <a href="#contacto" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-light transition group-hover:gap-2.5">
-            Ver Demo Interactiva <i data-lucide="arrow-right"></i>
-          </a>
-        </div>
-      </article>
-      <!-- Demo 3 -->
-      <article class="group glass overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
-        <div class="flex items-center gap-1.5 border-b border-white/5 bg-elevated px-4 py-2.5">
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
-          <span class="ml-3 truncate text-[11px] text-muted">roasters.demo</span>
-        </div>
-        <div class="grid h-40 place-items-center bg-gradient-to-br from-yellow-800/40 via-elevated to-bg text-5xl">🫘</div>
-        <div class="p-6">
-          <span class="rounded-md bg-brand/15 px-2 py-1 text-[11px] font-semibold text-brand-light">Roasters &amp; E-commerce</span>
-          <h3 class="mt-3 font-display text-xl text-cream">Catálogo de café en grano</h3>
-          <p class="mt-2 text-sm text-soft">Selector de molienda, fichas de origen y pasarela de contacto directo para pedidos mayoristas.</p>
-          <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-muted">
-            <span class="rounded border border-white/10 px-2 py-0.5">Catálogo</span>
-            <span class="rounded border border-white/10 px-2 py-0.5">Selector molienda</span>
-            <span class="rounded border border-white/10 px-2 py-0.5">Contacto directo</span>
-          </div>
-          <a href="#contacto" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-light transition group-hover:gap-2.5">
-            Ver Demo Interactiva <i data-lucide="arrow-right"></i>
-          </a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- BENEFICIOS -->
-<section id="servicios" class="px-5 py-24">
-  <div class="mx-auto max-w-6xl">
-    <div class="max-w-2xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-light">Servicios para Cafeterías</p>
-      <h2 class="mt-3 font-display text-3xl text-cream sm:text-4xl">Beneficios que se notan en la caja</h2>
-    </div>
-    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand/15 text-xl text-brand-light"><i data-lucide="smartphone"></i></span>
-        <h3 class="mt-4 font-semibold text-cream">100% Mobile First</h3>
-        <p class="mt-2 text-sm text-soft">Navegación fluida ahí donde el 90% de tus comensales te busca: el celular.</p>
-      </div>
-      <div class="glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand/15 text-xl text-brand-light"><i data-lucide="qr-code"></i></span>
-        <h3 class="mt-4 font-semibold text-cream">Menú sin PDFs pesados</h3>
-        <p class="mt-2 text-sm text-soft">Carta interactiva fácil de leer y de actualizar tú mismo en segundos.</p>
-      </div>
-      <div class="glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand/15 text-xl text-brand-light"><i data-lucide="map-pin"></i></span>
-        <h3 class="mt-4 font-semibold text-cream">SEO Local &amp; Google Maps</h3>
-        <p class="mt-2 text-sm text-soft">Configuración para aparecer cuando buscan "cafeterías cerca de mí".</p>
-      </div>
-      <div class="glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand/15 text-xl text-brand-light"><i data-lucide="badge-dollar-sign"></i></span>
-        <h3 class="mt-4 font-semibold text-cream">Cero comisiones mensuales</h3>
-        <p class="mt-2 text-sm text-soft">Tu web y tus clientes son 100% tuyos. Sin intermediarios cobrando por pedido.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STACK -->
-<section id="stack" class="border-t border-white/5 bg-card/40 px-5 py-24">
-  <div class="mx-auto max-w-6xl">
-    <div class="max-w-2xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-light">Stack &amp; QA</p>
-      <h2 class="mt-3 font-display text-3xl text-cream sm:text-4xl">Perfil de ingeniería</h2>
-      <p class="mt-4 text-soft">QA Analyst &amp; Backend Developer. Diseño estrategias de prueba, construyo automatización mantenible y desarrollo los servicios que la sostienen.</p>
-    </div>
-    <div class="mt-12 grid gap-6 md:grid-cols-3">
-      <div class="glass rounded-2xl p-6">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand/15 text-xl text-brand-light"><i data-lucide="server"></i></span>
-        <h3 class="mt-4 font-display text-lg text-cream">Backend &amp; APIs</h3>
-        <div class="mt-4 flex flex-wrap gap-2 text-xs">
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">Python</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">FastAPI</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">SQL</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">Docker</span>
-        </div>
-      </div>
-      <div class="glass rounded-2xl p-6">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand/15 text-xl text-brand-light"><i data-lucide="shield-check"></i></span>
-        <h3 class="mt-4 font-display text-lg text-cream">Calidad &amp; Testing Automatizado</h3>
-        <div class="mt-4 flex flex-wrap gap-2 text-xs">
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">Playwright</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">Robot Framework</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">Postman</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">Pytest</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">CI/CD</span>
-        </div>
-      </div>
-      <div class="glass rounded-2xl p-6">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand/15 text-xl text-brand-light"><i data-lucide="code-2"></i></span>
-        <h3 class="mt-4 font-display text-lg text-cream">Frontend &amp; Web</h3>
-        <div class="mt-4 flex flex-wrap gap-2 text-xs">
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">HTML5 Semántico</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">Tailwind CSS</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">JavaScript Moderno</span>
-          <span class="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 text-soft">SEO On-Page</span>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="mt-16 font-display text-2xl text-cream">Proyectos de Software &amp; QA</h3>
-    <div class="mt-6 grid gap-6 md:grid-cols-2">
-      <article class="glass rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1">
-        <h4 class="font-display text-xl text-cream">API Test Harness</h4>
-        <p class="mt-3 text-sm text-soft">Suite de pruebas de contrato e integración sobre FastAPI, con datos versionados y reporte HTML en cada pull request. Detiene regresiones antes de producción.</p>
-        <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-muted">
-          <span class="rounded border border-white/10 px-2 py-0.5">Pytest</span>
-          <span class="rounded border border-white/10 px-2 py-0.5">FastAPI</span>
-          <span class="rounded border border-white/10 px-2 py-0.5">GitHub Actions</span>
-          <span class="rounded border border-white/10 px-2 py-0.5">Docker</span>
-        </div>
-        <a href="https://github.com/mokadesarrollos/api-test-harness" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-light hover:gap-2.5">
-          <i data-lucide="github"></i> Ver repositorio
-        </a>
-      </article>
-      <article class="glass rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1">
-        <h4 class="font-display text-xl text-cream">E2E Automation Framework</h4>
-        <p class="mt-3 text-sm text-soft">Framework end-to-end con Playwright y patrón Page Object, ejecución paralela y video de los fallos. Redujo la regresión manual de 2 días a minutos.</p>
-        <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-muted">
-          <span class="rounded border border-white/10 px-2 py-0.5">Playwright</span>
-          <span class="rounded border border-white/10 px-2 py-0.5">Python</span>
-          <span class="rounded border border-white/10 px-2 py-0.5">Allure</span>
-          <span class="rounded border border-white/10 px-2 py-0.5">Docker</span>
-        </div>
-        <a href="https://github.com/mokadesarrollos/e2e-automation-framework" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-light hover:gap-2.5">
-          <i data-lucide="github"></i> Ver repositorio
-        </a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- CTA + CONTACTO -->
-<section id="contacto" class="px-5 py-24">
+<section id="inicio" class="border-b border-line px-5 py-16 md:py-24">
   <div class="mx-auto max-w-5xl">
-    <div class="grain relative overflow-hidden rounded-3xl border border-white/10 bg-elevated p-10 text-center sm:p-14">
-      <div class="relative">
-        <h2 class="mx-auto max-w-2xl font-display text-3xl text-cream sm:text-4xl">
-          ¿Listo para modernizar tu cafetería o necesitas un desarrollador QA/Backend para tu equipo?
-        </h2>
-        <p class="mx-auto mt-4 max-w-xl text-soft">Respondo por WhatsApp o correo el mismo día. Cuéntame tu negocio y te propongo un plan.</p>
-        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <a href="https://wa.me/56900000000?text=Hola%20Francisco%2C%20quiero%20cotizar%20un%20sitio%20web" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 rounded-xl bg-brand px-6 py-3.5 font-semibold text-bg shadow-glow transition-all duration-300 hover:-translate-y-1 hover:bg-brand-light">
-            <i data-lucide="message-circle"></i> WhatsApp directo
-          </a>
-          <a href="mailto:r.silvahevia@gmail.com" class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-6 py-3.5 font-semibold text-cream transition-all duration-300 hover:-translate-y-1 hover:border-white/30">
-            <i data-lucide="mail"></i> Correo
-          </a>
-          <a href="assets/cv-francisco-cid.pdf" download class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-6 py-3.5 font-semibold text-cream transition-all duration-300 hover:-translate-y-1 hover:border-white/30">
-            <i data-lucide="download"></i> Descargar CV
-          </a>
-        </div>
+    <p class="label">Francisco Cid — Santiago, Chile</p>
+    <h1 class="mt-5 max-w-3xl font-display text-[2rem] font-medium leading-[1.12] tracking-[-0.01em] text-ink sm:text-[2.6rem] md:text-[3.1rem]">
+      Hago dos cosas: cartas digitales para cafeterías y aseguramiento de calidad de software.
+    </h1>
+    <p class="mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-ink-soft">
+      Construyo sitios web y menús por QR para cafeterías y comercios gastronómicos.
+      En paralelo trabajo como analista de calidad y desarrollador backend: diseño suites
+      de prueba con Playwright y Robot Framework, y desarrollo APIs con Python y FastAPI.
+    </p>
+
+    <div class="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
+      <div class="bg-surface p-7">
+        <p class="label">Para tu negocio</p>
+        <h2 class="mt-3 font-display text-xl font-semibold text-ink">Tengo una cafetería</h2>
+        <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+          Necesito una carta que se actualice sola, un QR para las mesas y aparecer
+          en Google Maps cuando buscan una cafetería en el barrio.
+        </p>
+        <a href="#cafeterias" class="btn btn-ghost mt-6">Ver cómo trabajo con cafeterías</a>
+      </div>
+      <div class="bg-surface p-7">
+        <p class="label">Para tu equipo</p>
+        <h2 class="mt-3 font-display text-xl font-semibold text-ink">Busco un perfil de QA o backend</h2>
+        <p class="mt-3 font-mono text-[0.82rem] leading-relaxed text-ink-soft">
+          Necesito a alguien que diseñe y mantenga la automatización de pruebas
+          (Playwright, Robot Framework) y desarrolle los servicios en Python/FastAPI
+          que la sostienen.
+        </p>
+        <a href="#software" class="btn btn-ghost mt-6">Ver perfil técnico y proyectos</a>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="cafeterias" class="border-b border-line px-5 py-16 md:py-24">
+  <div class="mx-auto max-w-5xl">
+    <p class="label">Cafeterías y comercios gastronómicos</p>
+    <h2 class="mt-4 max-w-2xl font-display text-2xl font-medium leading-tight text-ink sm:text-[2rem]">
+      Cartas digitales que abren en 0,6&nbsp;s al escanear el QR en la mesa
+    </h2>
+    <p class="mt-5 max-w-2xl leading-relaxed text-ink-soft">
+      Sin pedirle al cliente que descargue un PDF de 15&nbsp;MB, sin instalar apps de
+      terceros y sin comisión por pedido. Tú actualizas precios y disponibilidad desde
+      el teléfono; el sitio y los clientes quedan a tu nombre.
+    </p>
+
+    <div class="mt-14 grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-14">
+      <div>
+        <h3 class="font-display text-lg font-semibold text-ink">Cómo funciona</h3>
+        <ol class="mt-5 space-y-6">
+          <li class="flex gap-4">
+            <span class="font-display text-lg font-medium text-accent">1</span>
+            <p class="text-sm leading-relaxed text-ink-soft">
+              Me envías tu carta actual —foto, PDF o planilla— y las fotos de producto que tengas.
+            </p>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-display text-lg font-medium text-accent">2</span>
+            <p class="text-sm leading-relaxed text-ink-soft">
+              Monto el sitio, genero el QR listo para imprimir y configuro tu ficha de Google Maps.
+            </p>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-display text-lg font-medium text-accent">3</span>
+            <p class="text-sm leading-relaxed text-ink-soft">
+              Te dejo una capacitación de 30 minutos para que cambies precios y agotados tú mismo.
+            </p>
+          </li>
+        </ol>
+        <p class="mt-8 text-xs leading-relaxed text-ink-soft">
+          Incluye dominio, hosting y el QR impreso. Pago único, sin mensualidad por pedido.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-display text-lg font-semibold text-ink">Ejemplos por tipo de negocio</h3>
+        <ul class="mt-5 divide-y divide-line border-y border-line">
+          <li class="py-5">
+            <p class="font-display font-semibold text-ink">Cafetería de especialidad</p>
+            <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">
+              Carta por categorías con notas de origen y método, y botón de pedido directo a WhatsApp.
+            </p>
+            <a href="#contacto" class="link-accent mt-3 inline-block text-sm">Ver demostración de carta digital</a>
+          </li>
+          <li class="py-5">
+            <p class="font-display font-semibold text-ink">Panadería con cafetería</p>
+            <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">
+              Carta con horarios que cambian según el día, ubicación en mapa y reserva de mesa por formulario corto.
+            </p>
+            <a href="#contacto" class="link-accent mt-3 inline-block text-sm">Ver demostración de reservas</a>
+          </li>
+          <li class="py-5">
+            <p class="font-display font-semibold text-ink">Tostador con venta de grano</p>
+            <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">
+              Catálogo de café en grano con selector de molienda, ficha de origen y pedidos mayoristas por correo.
+            </p>
+            <a href="#contacto" class="link-accent mt-3 inline-block text-sm">Ver demostración de catálogo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="software" class="border-b border-line px-5 py-16 md:py-24">
+  <div class="mx-auto max-w-5xl">
+    <p class="label">Analista de QA · desarrollo backend</p>
+    <h2 class="mt-4 max-w-2xl font-display text-2xl font-medium leading-tight text-ink sm:text-[2rem]">
+      Automatización de pruebas mantenible y las APIs que la sostienen
+    </h2>
+    <p class="mt-5 max-w-2xl leading-relaxed text-ink-soft">
+      Diseño la estrategia de prueba, construyo la automatización end-to-end y de API,
+      y desarrollo los servicios backend en Python. El objetivo es que una regresión
+      se detecte en el pull request, no en producción.
+    </p>
+
+    <dl class="mt-12 divide-y divide-line border-y border-line">
+      <div class="grid gap-2 py-5 md:grid-cols-[220px_1fr] md:gap-8">
+        <dt class="font-display font-semibold text-ink">Automatización de pruebas</dt>
+        <dd class="font-mono text-sm text-ink-soft">Playwright · Robot Framework · Pytest · Postman</dd>
+      </div>
+      <div class="grid gap-2 py-5 md:grid-cols-[220px_1fr] md:gap-8">
+        <dt class="font-display font-semibold text-ink">Backend y APIs</dt>
+        <dd class="font-mono text-sm text-ink-soft">Python · FastAPI · SQL · Docker</dd>
+      </div>
+      <div class="grid gap-2 py-5 md:grid-cols-[220px_1fr] md:gap-8">
+        <dt class="font-display font-semibold text-ink">Integración continua</dt>
+        <dd class="font-mono text-sm text-ink-soft">GitHub Actions · reportes HTML · ejecución paralela</dd>
+      </div>
+    </dl>
+
+    <h3 class="mt-14 font-display text-lg font-semibold text-ink">Proyectos</h3>
+    <div class="mt-5 grid gap-5 md:grid-cols-2">
+      <article class="rounded-xl border border-line bg-surface p-6">
+        <h4 class="font-display text-lg font-semibold text-ink">API Test Harness</h4>
+        <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+          Pruebas de contrato e integración sobre una API FastAPI. Datos de prueba
+          versionados y reporte HTML adjunto a cada pull request.
+        </p>
+        <p class="mt-4 font-mono text-xs text-ink-soft">Pytest · FastAPI · GitHub Actions · Docker</p>
+        <a href="https://github.com/mokadesarrollos/api-test-harness" target="_blank" rel="noopener" class="link-accent mt-4 inline-block text-sm">Ver repositorio en GitHub</a>
+      </article>
+      <article class="rounded-xl border border-line bg-surface p-6">
+        <h4 class="font-display text-lg font-semibold text-ink">E2E Automation Framework</h4>
+        <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+          Suite end-to-end con Playwright y patrón Page Object, ejecución paralela y
+          video de cada fallo. Bajó la regresión manual de dos días a veinte minutos.
+        </p>
+        <p class="mt-4 font-mono text-xs text-ink-soft">Playwright · Python · Allure · Docker</p>
+        <a href="https://github.com/mokadesarrollos/e2e-automation-framework" target="_blank" rel="noopener" class="link-accent mt-4 inline-block text-sm">Ver repositorio en GitHub</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="px-5 py-16 md:py-24">
+  <div class="mx-auto grid max-w-5xl gap-12 md:grid-cols-[1.3fr_1fr] md:gap-16">
+    <div>
+      <p class="label">Contacto</p>
+      <h2 class="mt-4 font-display text-2xl font-medium leading-tight text-ink sm:text-[2rem]">
+        Conversemos
+      </h2>
+      <p class="mt-5 leading-relaxed text-ink-soft">
+        Respondo el mismo día. Cuéntame si es para una cafetería o para un equipo de
+        software y te propongo los siguientes pasos, con plazo y precio.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="https://wa.me/56900000000?text=Hola%20Francisco%2C%20quiero%20consultarte" target="_blank" rel="noopener" class="btn btn-primary">
+          Enviar mensaje por WhatsApp
+        </a>
+        <a href="mailto:r.silvahevia@gmail.com" class="btn btn-ghost">Escribir un correo</a>
+        <a href="assets/cv-francisco-cid.pdf" download class="btn btn-ghost">Descargar CV (PDF)</a>
+      </div>
+    </div>
+    <dl class="space-y-5 self-center border-t border-line pt-6 text-sm md:border-l md:border-t-0 md:pl-8 md:pt-0">
+      <div>
+        <dt class="label">Correo</dt>
+        <dd class="mt-1"><a href="mailto:r.silvahevia@gmail.com" class="link-accent">r.silvahevia@gmail.com</a></dd>
+      </div>
+      <div>
+        <dt class="label">Ubicación</dt>
+        <dd class="mt-1 text-ink-soft">Santiago, Chile — trabajo remoto o presencial en la RM</dd>
+      </div>
+      <div>
+        <dt class="label">Repositorios</dt>
+        <dd class="mt-1"><a href="https://github.com/mokadesarrollos" target="_blank" rel="noopener" class="link-accent">github.com/mokadesarrollos</a></dd>
+      </div>
+    </dl>
   </div>
 </section>
 </main>
 
-<!-- FOOTER -->
-<footer class="border-t border-white/5 px-5 py-10">
-  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 text-sm text-muted sm:flex-row">
-    <p>© <span id="year"></span> Francisco Cid — Webs &amp; Code.</p>
-    <div class="flex items-center gap-5">
-      <a href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener" class="transition hover:text-cream" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-      <a href="https://github.com/mokadesarrollos" target="_blank" rel="noopener" class="transition hover:text-cream" aria-label="GitHub"><i data-lucide="github"></i></a>
-      <a href="mailto:r.silvahevia@gmail.com" class="transition hover:text-cream" aria-label="Correo"><i data-lucide="mail"></i></a>
-      <a href="https://wa.me/56900000000" target="_blank" rel="noopener" class="transition hover:text-cream" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+<footer class="border-t border-line px-5 py-10">
+  <div class="mx-auto flex max-w-5xl flex-col gap-4 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
+    <p>© <span id="year"></span> Francisco Cid · Santiago, Chile</p>
+    <div class="flex flex-wrap gap-5">
+      <a href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener" class="nav-link">LinkedIn</a>
+      <a href="https://github.com/mokadesarrollos" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+      <a href="mailto:r.silvahevia@gmail.com" class="nav-link">Correo</a>
+      <a href="https://wa.me/56900000000" target="_blank" rel="noopener" class="nav-link">WhatsApp</a>
     </div>
   </div>
 </footer>
 
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
-  lucide.createIcons();
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
